@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <!-- Wizard form -->
+  <record id="view_ai_task_wizard_form" model="ir.ui.view">
+    <field name="name">project.ai.task.wizard.form</field>
+    <field name="model">project.ai.task.wizard</field>
+    <field name="arch" type="xml">
+      <form string="AI Task Wizard">
+        <group>
+          <field name="mode"/>
+          <field name="project_id" options="{'no_create': False}"/>
+          <field name="task_id" attrs="{'invisible': [('mode','!=','change')], 'required': [('mode','=','change')]}"/>
+          <field name="name"/>
+          <field name="description"/>
+          <field name="user_id" options="{'no_open': True}"/>
+          <field name="date_deadline"/>
+          <field name="priority"/>
+          <field name="tag_names" placeholder="bug, api, urgent"/>
+          <field name="spec_url" placeholder="https://..."/>
+        </group>
+        <footer>
+          <button string="Submit" class="btn-primary" type="object" name="action_submit"/>
+          <button string="Cancel" class="btn-secondary" special="cancel"/>
+        </footer>
+      </form>
+    </field>
+  </record>
+
+  <!-- Action to open wizard -->
+  <record id="action_ai_task_wizard" model="ir.actions.act_window">
+    <field name="name">AI Task Wizard</field>
+    <field name="res_model">project.ai.task.wizard</field>
+    <field name="view_mode">form</field>
+    <field name="target">new</field>
+    <field name="context">{'default_mode': 'create'}</field>
+  </record>
+
+  <!-- Menu item under Project for quick access -->
+  <menuitem id="menu_ai_task_wizard_root"
+            name="AI Wizard"
+            parent="project.menu_main_pm"
+            sequence="95"
+            action="action_ai_task_wizard"/>
+</odoo>

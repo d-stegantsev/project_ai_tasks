@@ -1,0 +1,17 @@
+<odoo>
+    <!-- Create Task Wizard -->
+    <record id="open_ai_task_wizard" model="ir.actions.act_window">
+        <field name="name">AI Task Wizard</field>
+        <field name="res_model">project.ai.task.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <!-- Change Task Wizard -->
+    <record id="open_ai_change_task_wizard" model="ir.actions.act_window">
+        <field name="name">AI Change Task Wizard</field>
+        <field name="res_model">project.ai.task.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>

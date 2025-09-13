@@ -1,0 +1,37 @@
+<odoo>
+  <record id="view_task_form_ai_inherit" model="ir.ui.view">
+    <field name="name">project.task.form.ai</field>
+    <field name="model">project.task</field>
+    <field name="inherit_id" ref="project.view_task_form2"/>
+    <field name="arch" type="xml">
+
+      <!-- AI fields -->
+      <xpath expr="//sheet" position="inside">
+        <group string="AI">
+          <field name="ai_status"/>
+          <field name="ai_feedback"/>
+          <field name="ai_tags" widget="many2many_tags"/>
+        </group>
+      </xpath>
+
+      <!-- Header buttons -->
+      <xpath expr="//header" position="inside">
+        <button name="action_pause" type="object" string="Pause"
+                groups="project_ai_tasks.group_ai_pm,project_ai_tasks.group_ai_dev"
+                attrs="{'invisible': [('ai_status', '=', 'paused')]}"/>
+        <button name="action_resume" type="object" string="Resume"
+                groups="project_ai_tasks.group_ai_pm,project_ai_tasks.group_ai_dev"
+                attrs="{'invisible': [('ai_status', '!=', 'paused')]}"/>
+        <button name="action_cancel" type="object" string="Cancel"
+                groups="project_ai_tasks.group_ai_pm,project_ai_tasks.group_ai_dev"/>
+        <button name="action_return" type="object" string="Return"
+                groups="project_ai_tasks.group_ai_pm"/>
+        <button name="action_approve" type="object" string="Approve"
+                groups="project_ai_tasks.group_ai_pm"/>
+        <button name="action_complete" type="object" string="Complete"
+                groups="project_ai_tasks.group_ai_dev"/>
+      </xpath>
+
+    </field>
+  </record>
+</odoo>
